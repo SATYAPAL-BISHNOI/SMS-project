@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -102,3 +105,59 @@ public:
         cout << "Product not found!" << endl;
     }
 };
+
+
+int main() {
+    Shop shop;
+    int choice;
+
+    while (true) {
+        cout << "1. Add Product" << endl;
+        cout << "2. Display Products" << endl;
+        cout << "3. Update Product" << endl;
+        cout << "4. Delete Product" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            string name;
+            double price;
+            int quantity;
+            cout << "Enter product name: ";
+            cin >> name;
+            cout << "Enter product price: ";
+            cin >> price;
+            cout << "Enter product quantity: ";
+            cin >> quantity;
+            shop.addProduct(name, price, quantity);
+        } else if (choice == 2) {
+            shop.displayProducts();
+        } else if (choice == 3) {
+            int id;
+            string name;
+            double price;
+            int quantity;
+            cout << "Enter product ID to update: ";
+            cin >> id;
+            cout << "Enter new product name: ";
+            cin >> name;
+            cout << "Enter new product price: ";
+            cin >> price;
+            cout << "Enter new product quantity: ";
+            cin >> quantity;
+            shop.updateProduct(id, name, price, quantity);
+        } else if (choice == 4) {
+            int id;
+            cout << "Enter product ID to delete: ";
+            cin >> id;
+            shop.deleteProduct(id);
+        } else if (choice == 5) {
+            break;
+        } else {
+            cout << "Invalid choice, please try again." << endl;
+        }
+    }
+
+    return 0;
+}
